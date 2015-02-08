@@ -5,6 +5,7 @@ namespace Aztech\Layers\Oauth\Elements;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Aztech\Layers\Oauth\ClientAdapterCollection;
+use Aztech\Layers\Layer;
 
 class SocialLoginCallback
 {
@@ -26,7 +27,7 @@ class SocialLoginCallback
         $this->prefix = $prefix;
     }
 
-    public function setNextController(callable $controller)
+    public function setNextController(Layer $controller)
     {
         $this->nextController = $controller;
     }

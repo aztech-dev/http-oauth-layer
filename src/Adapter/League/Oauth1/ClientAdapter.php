@@ -5,8 +5,9 @@ namespace Aztech\Layers\Oauth\Adapter\League\Oauth1;
 use Aztech\Layers\Oauth\ClientAdapter as OauthClientAdapter;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
-
 use League\OAuth1\Client\Server\Server;
+use League\OAuth1\Client\Credentials\CredentialsException;
+use Aztech\Layers\Oauth\InvalidAuthorizationException;
 
 class ClientAdapter implements OauthClientAdapter
 {
@@ -42,7 +43,7 @@ class ClientAdapter implements OauthClientAdapter
      *
      * @see \Aztech\Layers\Oauth\ClientAdapter::storePreAuthorizationData()
      */
-    public function storeAuthorizationData(SessionInterface $session)
+    public function storeAuthorizationData(Request $request, SessionInterface $session)
     {
         $this->temporaryCredentials = $this->provider->getTemporaryCredentials();
         $session->set($this->providerName, $this->temporaryCredentials);
@@ -63,7 +64,7 @@ class ClientAdapter implements OauthClientAdapter
      *
      * @see \Aztech\Layers\Oauth\ClientAdapter::hasAuthorizationData()
      */
-    public function canGetCredentials(Request $request)
+    public function canGetCredentials(Request $request, SessionInterface $session)
     {
         return $request->get('oauth_token', false) !== false && $request->get('oauth_verifier', false) !== false;
     }
@@ -81,9 +82,18 @@ class ClientAdapter implements OauthClientAdapter
 
         $session->remove($this->providerName);
 
-        $credentials = $this->provider->getTokenCredentials($temporaryCredentials, $temporaryIdentifier, $verifier);
-        $user = $this->provider->getUserDetails($credentials);
+        if (! $temporaryCredentials) {
+            throw new InvalidAuthorizationException();
+        }
 
-        return new Credentials($credentials, $user);
+        try {
+            $credentials = $this->provider->getTokenCredentials($temporaryCredentials, $temporaryIdentifier, $verifier);
+            $user = $this->provider->getUserDetails($credentials);
+
+            return new Credentials($credentials, $user);
+        }
+        catch (CredentialsException $ex) {
+            throw new InvalidAuthorizationException('', 0, $ex);
+        }
     }
 }
