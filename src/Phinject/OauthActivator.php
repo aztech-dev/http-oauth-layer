@@ -52,7 +52,7 @@ class OauthActivator implements Activator, ConfigurationAware
         }
 
         $oauthProviders = new ClientAdapterCollection();
-        $session = $container->resolve($serviceConfig->resolve('session'));
+        $session = $container->resolve($serviceConfig->resolveStrict('session'));
 
         $oauthProviderConfig = $container->resolve($serviceConfig->resolve('oauth', [], false));
 
