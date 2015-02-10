@@ -2,7 +2,7 @@
 
 namespace Aztech\Layers\Oauth;
 
-class InvalidAuthorizationException extends \RuntimeException
+class InvalidAuthorizationException extends OauthException
 {
 
 }

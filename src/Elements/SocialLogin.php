@@ -6,6 +6,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Aztech\Layers\Oauth\ClientAdapterCollection;
 use Guzzle\Http\Message\Response;
+use Aztech\Layers\Oauth\LoginManager;
 
 class SocialLogin
 {
@@ -15,6 +16,8 @@ class SocialLogin
     private $providers;
 
     private $prefix;
+
+    private $loginManager;
 
     public function __construct(SessionInterface $session, ClientAdapterCollection $providers, $prefix = '')
     {

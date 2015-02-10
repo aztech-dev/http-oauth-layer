@@ -6,6 +6,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Aztech\Layers\Oauth\ClientAdapterCollection;
 use Aztech\Layers\Layer;
+use Aztech\Layers\Oauth\LoginManager;
 
 class SocialLoginCallback
 {
@@ -18,13 +19,16 @@ class SocialLoginCallback
 
     private $loginHandler;
 
+    private $loginManager;
+
     private $nextController;
 
-    public function __construct(SessionInterface $session, ClientAdapterCollection $providers, $prefix = '')
+    public function __construct(SessionInterface $session, LoginManager $manager, ClientAdapterCollection $providers, $prefix = '')
     {
         $this->session = $session;
         $this->providers = $providers;
         $this->prefix = $prefix;
+        $this->loginManager = $manager;
     }
 
     public function setNextController(Layer $controller)
@@ -43,6 +47,8 @@ class SocialLoginCallback
         $provider = $this->providers->get($providerName);
 
         $credentials = $provider->getCredentials($request, $this->session);
+
+        $this->loginManager->setCredentials($credentials);
 
         if ($this->loginHandler) {
             $handler = $this->loginHandler;
