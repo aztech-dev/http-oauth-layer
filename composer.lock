@@ -4,20 +4,20 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "f8ca2af6df64175c1ac6c62535e5b7b6",
+    "hash": "850163d7ba19281c6b18d6de2df67766",
     "packages": [
         {
             "name": "aztech/layers",
-            "version": "0.1.0",
+            "version": "0.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aztech-digital/http-layers.git",
-                "reference": "d53fede1e2dced159652e2c6205defee990aeaeb"
+                "reference": "b4094f236839b3e2f5c9da5b01b7208553e14df8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aztech-digital/http-layers/zipball/d53fede1e2dced159652e2c6205defee990aeaeb",
-                "reference": "d53fede1e2dced159652e2c6205defee990aeaeb",
+                "url": "https://api.github.com/repos/aztech-digital/http-layers/zipball/b4094f236839b3e2f5c9da5b01b7208553e14df8",
+                "reference": "b4094f236839b3e2f5c9da5b01b7208553e14df8",
                 "shasum": ""
             },
             "require": {
@@ -52,20 +52,20 @@
                 }
             ],
             "description": "Stackable HTTP layers",
-            "time": "2015-02-10 16:47:26"
+            "time": "2015-02-10 18:16:37"
         },
         {
             "name": "aztech/phinject",
-            "version": "0.2.5",
+            "version": "0.2.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aztech-digital/phinject.git",
-                "reference": "0225c4814baf31c1bc4133170bb4e84c93b3059b"
+                "reference": "64a3297488f4c904b156562a969cd7a39b89eb99"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aztech-digital/phinject/zipball/0225c4814baf31c1bc4133170bb4e84c93b3059b",
-                "reference": "0225c4814baf31c1bc4133170bb4e84c93b3059b",
+                "url": "https://api.github.com/repos/aztech-digital/phinject/zipball/64a3297488f4c904b156562a969cd7a39b89eb99",
+                "reference": "64a3297488f4c904b156562a969cd7a39b89eb99",
                 "shasum": ""
             },
             "require": {
@@ -427,16 +427,16 @@
         },
         {
             "name": "league/oauth2-client",
-            "version": "0.7.2",
+            "version": "0.8.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/oauth2-client.git",
-                "reference": "428a28efb15e70fda89eca717b557a68c2035d4d"
+                "reference": "bb2d4e4be7a4af05260de9eaa4337920bc5e0ad1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/oauth2-client/zipball/428a28efb15e70fda89eca717b557a68c2035d4d",
-                "reference": "428a28efb15e70fda89eca717b557a68c2035d4d",
+                "url": "https://api.github.com/repos/thephpleague/oauth2-client/zipball/bb2d4e4be7a4af05260de9eaa4337920bc5e0ad1",
+                "reference": "bb2d4e4be7a4af05260de9eaa4337920bc5e0ad1",
                 "shasum": ""
             },
             "require": {
@@ -451,7 +451,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "0.7.x-dev"
+                    "dev-master": "0.8.x-dev"
                 }
             },
             "autoload": {
@@ -482,7 +482,7 @@
                 "oauth2",
                 "single sign on"
             ],
-            "time": "2015-02-03 15:27:33"
+            "time": "2015-02-12 17:10:16"
         },
         {
             "name": "pimple/pimple",
