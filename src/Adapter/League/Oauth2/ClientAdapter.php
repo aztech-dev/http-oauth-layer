@@ -7,6 +7,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use League\OAuth2\Client\Provider\ProviderInterface;
 use League\OAuth2\Client\Provider\AbstractProvider;
+use League\OAuth2\Client\Exception\IDPException;
+use Aztech\Layers\Oauth\InvalidAuthorizationException;
 
 class ClientAdapter implements OauthClientAdapter
 {
@@ -80,8 +82,13 @@ class ClientAdapter implements OauthClientAdapter
      */
     public function getCredentials(Request $request, SessionInterface $session)
     {
-        $token = $this->provider->getAccessToken('authorization_code', [ 'code' => $request->get('code') ]);
-        $user = $this->provider->getUserDetails($token);
+        try {
+            $token = $this->provider->getAccessToken('authorization_code', [ 'code' => $request->get('code') ]);
+            $user = $this->provider->getUserDetails($token);
+        }
+        catch (IDPException $exception) {
+            throw new InvalidAuthorizationException('Authorization failed', 0, $exception);
+        }
 
         return new Credentials($token, $user);
     }
