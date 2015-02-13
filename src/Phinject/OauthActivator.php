@@ -15,9 +15,11 @@ class OauthActivator implements Activator, ConfigurationAware
 {
 
     private static $oauthMap = [
-        'facebook' => 'League\OAuth2\Client\Provider\Facebook',
-        'github' => 'League\OAuth2\Client\Provider\Github',
-        'bitbucket' => 'League\OAuth1\Client\Server\Bitbucket'
+        'bitbucket' => 'League\OAuth1\Client\Server\Bitbucket',
+        'twitter'   => 'League\OAuth1\Client\Server\Twitter',
+        'facebook'  => 'League\OAuth2\Client\Provider\Facebook',
+        'github'    => 'League\OAuth2\Client\Provider\Github',
+        'google'    => 'League\OAuth2\Client\Provider\Google'
     ];
 
     private $configuration;
