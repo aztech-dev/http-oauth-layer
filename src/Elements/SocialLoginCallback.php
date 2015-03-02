@@ -2,6 +2,7 @@
 
 namespace Aztech\Layers\Oauth\Elements;
 
+use Aztech\Layers\Oauth\InvalidAuthorizationException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Aztech\Layers\Oauth\ClientAdapterCollection;
@@ -46,9 +47,13 @@ class SocialLoginCallback
         $providerName = $this->prefix . $request->get('provider');
         $provider = $this->providers->get($providerName);
 
-        $credentials = $provider->getCredentials($request, $this->session);
-
-        $this->loginManager->setCredentials($credentials);
+        try {
+            $credentials = $provider->getCredentials($request, $this->session);
+            $this->loginManager->setCredentials($credentials);
+        }
+        catch (InvalidAuthorizationException $exception) {
+            $this->loginManager->setLastError($exception);
+        }
 
         if ($this->loginHandler) {
             $handler = $this->loginHandler;
