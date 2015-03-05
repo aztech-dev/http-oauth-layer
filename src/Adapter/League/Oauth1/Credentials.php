@@ -54,6 +54,7 @@ class Credentials implements OauthCredentials
 
     /**
      * (non-PHPdoc)
+     *
      * @see \Aztech\Layers\Oauth\Credentials::getLastName()
      */
     public function getLastName()
@@ -63,6 +64,7 @@ class Credentials implements OauthCredentials
 
     /**
      * (non-PHPdoc)
+     *
      * @see \Aztech\Layers\Oauth\Credentials::getFirstName()
      */
     public function getFirstName()
@@ -72,6 +74,7 @@ class Credentials implements OauthCredentials
 
     /**
      * (non-PHPdoc)
+     *
      * @see \Aztech\Layers\Oauth\Credentials::getEmail()
      */
     public function getEmail()
@@ -81,10 +84,19 @@ class Credentials implements OauthCredentials
 
     /**
      * (non-PHPdoc)
+     *
      * @see \Aztech\Layers\Oauth\Credentials::getAvatar()
      */
     public function getAvatar()
     {
         return $this->user->imageUrl;
+    }
+
+    /**
+     * @return string
+     */
+    public function getToken()
+    {
+        return '';
     }
 }

@@ -16,4 +16,6 @@ interface Credentials
     public function getEmail();
 
     public function getAvatar();
+
+    public function getToken();
 }

@@ -69,4 +69,9 @@ class Credentials implements OauthCredentials
     {
         return $this->user->imageUrl;
     }
+
+    public function getToken()
+    {
+        return $this->credentials->accessToken;
+    }
 }
